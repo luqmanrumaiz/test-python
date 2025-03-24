@@ -3,7 +3,9 @@
 __pycache__/
 *.py[cod]
 *$py.class
+# Exclude all .env files from Docker builds
 .env
+.env.*
 .venv
 env/
 venv/
