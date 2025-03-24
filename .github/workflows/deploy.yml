@@ -34,17 +34,6 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-buildx-
 
-    # Generate .env file from GitHub secrets
-    - name: Create .env file
-      run: |
-        echo "# Generated .env file from GitHub secrets" > server/.env
-        echo "FLASK_ENV=production" >> server/.env
-        echo "DEBUG=False" >> server/.env
-        echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> server/.env
-        echo "API_TIMEOUT=${{ secrets.API_TIMEOUT || 30 }}" >> server/.env
-        echo "API_VERSION=${{ secrets.API_VERSION || 'v1' }}" >> server/.env
-        # Add other environment variables from secrets as needed
-
     - name: Build and push container image to registry
       uses: docker/build-push-action@v4
       with:
